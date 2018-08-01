@@ -44,7 +44,7 @@ interface IMovieDbApi {
      * @param page the page number.
      * @return RxJava {@code Single} for the page of movie list.
      */
-    @GET("movie/now_playing")
+    @GET("discover/movie")
     Single<PagingEnvelope<MovieData>> getMovieNowPlaying(@Query("page") int page);
 
     /**

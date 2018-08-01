@@ -17,21 +17,29 @@
 package com.github.brianspace.moviebrowser.repository.web;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
+
 import com.github.brianspace.moviebrowser.BuildConfig;
 import com.github.brianspace.moviebrowser.repository.Constants;
 import com.github.brianspace.moviebrowser.repository.util.FileUtil;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
+
 import okhttp3.Cache;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
+import okhttp3.logging.HttpLoggingInterceptor;
+import okio.Buffer;
+import okio.BufferedSource;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -55,6 +63,7 @@ final class MovieDbAdapterProvider {
 
     /**
      * The API key to call the TMDb web API.
+     *
      * @see <a href="https://developers.themoviedb.org/3/getting-started/authentication">Authentication</a>
      */
     private static final String API_KEY = BuildConfig.API_KEY;
@@ -70,8 +79,10 @@ final class MovieDbAdapterProvider {
         @Override
         public Response intercept(final Chain chain) throws IOException {
             Request original = chain.request();
-            final HttpUrl url = original.url().newBuilder().addQueryParameter(QUERY_API_KEY, API_KEY).build();
+            final HttpUrl url = original.url().newBuilder().addQueryParameter(QUERY_API_KEY, API_KEY)
+                    .build();
             original = original.newBuilder().url(url).build();
+            Log.d("URL" , url.toString());
             return chain.proceed(original);
         }
     }
@@ -98,16 +109,19 @@ final class MovieDbAdapterProvider {
         final Cache cache = new Cache(httpCacheDirectory, Constants.HTTP_CACHE_SIZE);
 
         final OkHttpClient.Builder builder = new OkHttpClient().newBuilder()
+
                 .addInterceptor(new ApiKeyInterceptor())
                 .connectTimeout(Constants.TMDB_API_TIMEOUT_CONNECT, TimeUnit.SECONDS)
                 .readTimeout(Constants.TMDB_API_TIMEOUT_READ, TimeUnit.SECONDS)
                 .cache(cache);
 
         // Uncomment to use Stetho network debugging
-         if (BuildConfig.DEBUG) {
-             builder.addNetworkInterceptor(
+        if (BuildConfig.DEBUG) {
+
+            builder.addNetworkInterceptor(
                     new com.facebook.stetho.okhttp3.StethoInterceptor()).build();
-         }
+        }
+
 
         return builder.build();
     }
@@ -123,8 +137,10 @@ final class MovieDbAdapterProvider {
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                 .create();
 
+
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(API_ENDPOINT)
+
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync()) // Use OkHttp's internal thread pool.
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(httpClient)
