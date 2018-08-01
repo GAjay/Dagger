@@ -104,10 +104,10 @@ final class MovieDbAdapterProvider {
                 .cache(cache);
 
         // Uncomment to use Stetho network debugging
-        // if (BuildConfig.DEBUG) {
-        //     builder.addNetworkInterceptor(
-        //            new com.facebook.stetho.okhttp3.StethoInterceptor()).build();
-        // }
+         if (BuildConfig.DEBUG) {
+             builder.addNetworkInterceptor(
+                    new com.facebook.stetho.okhttp3.StethoInterceptor()).build();
+         }
 
         return builder.build();
     }

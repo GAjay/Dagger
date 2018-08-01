@@ -11,7 +11,6 @@
   <dimen name="fab_margin">16dp</dimen>
 
 
-    <dimen name="bottom_navigation_view_height">44dp</dimen>
   <!-- Movie poster image grid. -->
   <dimen name="default_poster_width">120dp</dimen>
   <dimen name="default_poster_height">180dp</dimen>

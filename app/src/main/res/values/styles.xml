@@ -10,6 +10,7 @@
   <style name="AppTheme.NoActionBar">
     <item name="windowActionBar">false</item>
     <item name="windowNoTitle">true</item>
+
   </style>
 
   <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
@@ -19,6 +20,15 @@
   <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
     <item name="android:textSize">16sp</item>
   </style>
+  <!-- Default style for BottomNavigationViews.
+       Use the default style to get the default bottom navigation bar with a white background and
+       colorPrimary for the icon and text colors. -->
+
+
+  <!-- Colored style for Bottom NavigationViews.
+       Use the colored style to get a bottom navigation bar with a colorPrimary background and
+       percentages of white for the icon and text colors. -->
+
 
 
   <style name="MovieTitle" parent="@android:style/TextAppearance">

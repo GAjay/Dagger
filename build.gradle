@@ -26,11 +26,11 @@ allprojects {
 }
 
 subprojects {
-    afterEvaluate {
-        if (it.plugins.hasPlugin('com.android.application') || (it.plugins.hasPlugin('com.android.library'))) {
-            it.apply from:rootProject.file('analysis/quality/static_analysis.gradle')
-        }
-    }
+//    afterEvaluate {
+//        if (it.plugins.hasPlugin('com.android.application') || (it.plugins.hasPlugin('com.android.library'))) {
+//            it.apply from:rootProject.file('analysis/quality/static_analysis.gradle')
+//        }
+//    }
 }
 
 task clean(type: Delete) {
@@ -61,6 +61,6 @@ project.ext {
     LIB_ESPRESSO_CORE = 'com.android.support.test.espresso:espresso-core:3.0.1'
 
     // URI constants for navigation:
-    URI_SCHEME = 'bsmb'
-    URI_HOST = 'bsmb.brianspace.github.com'
+    URI_SCHEME = 'abc'
+    URI_HOST = 'abc.com'
 }
