@@ -49,6 +49,7 @@ public abstract class MovieListFragment extends DaggerFragment {
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
             final Bundle savedInstanceState) {
         movieListView = new MovieListView(this.getActivity());
+        Log.d("size",getMovieList().isLoaded()+"");
         movieListView.setMovieList(getMovieList());
         return movieListView;
     }
