@@ -1,78 +1,101 @@
 <resources>
 
-  <!-- Base application theme. -->
-  <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-    <item name="colorPrimary">@color/colorPrimary</item>
-    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-    <item name="colorAccent">@color/colorAccent</item>
-  </style>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:fontFamily">@font/raleway_light</item>
+    </style>
+    <style name="TextAppearance.Collapsed"
+        parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:fontFamily">@font/raleway_medium</item>
+    </style>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:fontFamily">@font/raleway_light</item>
 
-  <style name="AppTheme.NoActionBar">
-    <item name="windowActionBar">false</item>
-    <item name="windowNoTitle">true</item>
+    </style>
 
-  </style>
+    <style name="AppTheme.Actionbar">
+        <item name="windowActionBar">true</item>
+        <item name="android:fontFamily">@font/raleway_medium</item>
+    </style>
 
-  <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="CollapsedAppBar" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">normal</item>
+        <item name="fontFamily">@font/raleway_medium</item>
 
-  <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    </style>
 
-  <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-    <item name="android:textSize">16sp</item>
-  </style>
-  <!-- Default style for BottomNavigationViews.
-       Use the default style to get the default bottom navigation bar with a white background and
-       colorPrimary for the icon and text colors. -->
+    <style name="Widget.BottomNavigationView" parent="Widget.Design.BottomNavigationView">
+        <item name="fontFamily">@font/raleway_light</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="fontFamily">@font/raleway_medium</item>
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <item name="fontFamily">@font/raleway_medium</item>
+    </style>
+
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/raleway_medium</item>
+    </style>
+    <!-- Default style for BottomNavigationViews.
+         Use the default style to get the default bottom navigation bar with a white background and
+         colorPrimary for the icon and text colors. -->
 
 
-  <!-- Colored style for Bottom NavigationViews.
-       Use the colored style to get a bottom navigation bar with a colorPrimary background and
-       percentages of white for the icon and text colors. -->
+    <!-- Colored style for Bottom NavigationViews.
+         Use the colored style to get a bottom navigation bar with a colorPrimary background and
+         percentages of white for the icon and text colors. -->
 
 
+    <style name="MovieTitle" parent="@android:style/TextAppearance">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:typeface">normal</item>
+        <item name="android:singleLine">false</item>
+        <item name="android:textSize">@dimen/text_large</item>
+    </style>
 
-  <style name="MovieTitle" parent="@android:style/TextAppearance">
-    <item name="android:layout_width">match_parent</item>
-    <item name="android:layout_height">wrap_content</item>
-    <item name="android:textColor">@color/text_white</item>
-    <item name="android:typeface">normal</item>
-    <item name="android:singleLine">false</item>
-    <item name="android:textSize">@dimen/text_large</item>
-  </style>
+    <style name="MovieTagline" parent="@android:style/TextAppearance">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:singleLine">false</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:textSize">@dimen/text_small</item>
+    </style>
 
-  <style name="MovieTagline" parent="@android:style/TextAppearance">
-    <item name="android:layout_width">wrap_content</item>
-    <item name="android:layout_height">wrap_content</item>
-    <item name="android:textColor">@color/text_light_gray</item>
-    <item name="android:typeface">normal</item>
-    <item name="android:textStyle">italic</item>
-    <item name="android:singleLine">false</item>
-    <item name="android:ellipsize">marquee</item>
-    <item name="android:textSize">@dimen/text_small</item>
-  </style>
+    <style name="MovieOverview" parent="@android:style/TextAppearance">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_dark</item>
+        <item name="android:typeface">normal</item>
+        <item name="android:singleLine">false</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:textSize">@dimen/text_small</item>
+    </style>
 
-  <style name="MovieOverview" parent="@android:style/TextAppearance">
-    <item name="android:layout_width">match_parent</item>
-    <item name="android:layout_height">wrap_content</item>
-    <item name="android:textColor">@color/text_dark</item>
-    <item name="android:typeface">normal</item>
-    <item name="android:singleLine">false</item>
-    <item name="android:ellipsize">marquee</item>
-    <item name="android:textSize">@dimen/text_small</item>
-  </style>
+    <!-- Taken from Widget.TextView.ListSeparator -->
+    <style name="SettingsCategory" parent="@android:style/TextAppearance.Small">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">@drawable/bg_header_dither</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
 
-  <!-- Taken from Widget.TextView.ListSeparator -->
-  <style name="SettingsCategory" parent="@android:style/TextAppearance.Small">
-    <item name="android:layout_width">match_parent</item>
-    <item name="android:layout_height">wrap_content</item>
-    <item name="android:textStyle">bold</item>
-    <item name="android:gravity">center_vertical</item>
-    <item name="android:background">@drawable/bg_header_dither</item>
-    <item name="android:textAllCaps">true</item>
-  </style>
-
-  <style name="SettingsSummary" parent="@android:style/TextAppearance.Small">
-    <item name="android:maxLines">2</item>
-  </style>
+    <style name="SettingsSummary" parent="@android:style/TextAppearance.Small">
+        <item name="android:maxLines">2</item>
+    </style>
 
 </resources>

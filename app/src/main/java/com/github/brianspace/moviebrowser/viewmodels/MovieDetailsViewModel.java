@@ -47,6 +47,7 @@ public class MovieDetailsViewModel extends MovieViewModel {
 
     // endregion
 
+
     // region Public Constants
     // endregion
 

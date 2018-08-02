@@ -1,9 +1,9 @@
 <resources>
   <string name="app_name">Movie Browser</string>
 
-  <string name="tab_now_playing">Now Playing</string>
+  <string name="tab_now_playing">Discover</string>
   <string name="tab_favorite">Favorites</string>
-  <string name="tab_settings">Settings</string>
+  <string name="tab_settings">Control</string>
 
   <string name="title_similar_movies">Similar Movies</string>
 

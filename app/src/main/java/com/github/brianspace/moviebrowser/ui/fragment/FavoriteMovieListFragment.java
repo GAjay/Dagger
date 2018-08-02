@@ -16,6 +16,8 @@
 
 package com.github.brianspace.moviebrowser.ui.fragment;
 
+import android.util.Log;
+
 import com.github.brianspace.moviebrowser.viewmodels.IMovieList;
 import javax.inject.Inject;
 import javax.inject.Named;

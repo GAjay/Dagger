@@ -20,6 +20,7 @@ import static android.widget.Toast.LENGTH_LONG;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.ObservableList;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
@@ -93,7 +94,7 @@ public class MovieDetailsActivity extends DaggerAppCompatActivity {
          */
         /* default */ SimilarMoviesAdapter(@NonNull final ObservableList<MovieViewModel> itemList,
                 final HeaderedRecyclerViewDatabindingAdapter.HeaderParams headerParams) {
-            super(itemList, BR.movie, R.layout.item_poster, headerParams);
+            super(itemList, BR.movie, R.layout.item_poster_details, headerParams);
             setHasStableIds(true);
         }
 
@@ -128,6 +129,7 @@ public class MovieDetailsActivity extends DaggerAppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_movie_details);
+
         setSupportActionBar(binding.toolbar);
 
         // Set backdrop image height.

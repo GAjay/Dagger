@@ -2,30 +2,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-  <item
-    android:id="@+id/navigation_home"
-    android:icon="@drawable/ic_play_button"
-      android:enabled="true"
-      app:showAsAction="ifRoom"
-    android:title="@string/tab_now_playing"/>
+    <item
+        android:id="@+id/navigation_home"
+        android:enabled="true"
+        android:icon="@drawable/ic_search"
+        android:title="@string/tab_now_playing"
+        app:showAsAction="ifRoom" />
 
-  <item
-    android:id="@+id/navigation_favorites"
-    android:icon="@drawable/ic_heart"
-      android:enabled="true"
-      app:showAsAction="ifRoom"
-    android:title="@string/tab_favorite"/>
+    <item
+        android:id="@+id/navigation_favorites"
+        android:enabled="true"
+        android:icon="@drawable/ic_heart"
+        android:title="@string/tab_favorite"
+        app:showAsAction="ifRoom" />
 
-  <item
-    android:id="@+id/navigation_settings"
-    android:icon="@drawable/ic_controls"
-      android:enabled="true"
-      app:showAsAction="ifRoom"
-    android:title="@string/tab_settings"/>
+    <item
+        android:id="@+id/navigation_settings"
+        android:enabled="true"
+        android:icon="@drawable/ic_controls"
+        android:title="@string/tab_settings"
+        app:showAsAction="ifRoom" />
 
-  <item
-      android:id="@+id/navigation_menu"
-      android:icon="@drawable/ic_menu"
-      android:title="@string/tab_more"/>
 
 </menu>

@@ -164,6 +164,7 @@ public class MainActivity extends DaggerAppCompatActivity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setElevation(0);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initNavigationView();

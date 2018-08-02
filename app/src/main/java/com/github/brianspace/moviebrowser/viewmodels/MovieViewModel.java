@@ -42,6 +42,7 @@ public class MovieViewModel extends BaseObservable {
 
     // region Protected/Private Fields
 
+
     /**
      * Model layer movie object.
      */
@@ -133,6 +134,11 @@ public class MovieViewModel extends BaseObservable {
     @Bindable
     public float getRating() {
         return movie.getVoteAverage() / 2;
+    }
+
+    @Bindable
+    public String getTagline() {
+        return movie.getOverview() == null ? null : movie.getOverview();
     }
 
     /**

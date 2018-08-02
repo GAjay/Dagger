@@ -20,14 +20,21 @@ import android.content.Context;
 import android.databinding.ObservableList;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
 import com.github.brianspace.databinding.adapter.RecyclerViewDatabindingAdapter;
 import com.github.brianspace.moviebrowser.BR;
 import com.github.brianspace.moviebrowser.R;
@@ -36,6 +43,7 @@ import com.github.brianspace.moviebrowser.viewmodels.MovieViewModel;
 import com.github.brianspace.widgets.DynamicGridView;
 import com.github.brianspace.widgets.SwipeRefreshLayoutEx;
 import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
+
 import io.reactivex.CompletableObserver;
 import io.reactivex.disposables.Disposable;
 import retrofit2.HttpException;
@@ -73,7 +81,7 @@ public class MovieListView extends FrameLayout {
      */
     @SuppressWarnings("WeakerAccess")
     @BindView(R.id.movie_list)
-    /* default */ DynamicGridView movieGridView;
+    /* default */ RecyclerView movieGridView;
 
     /**
      * ProgressBar for data loading.
@@ -82,6 +90,9 @@ public class MovieListView extends FrameLayout {
     @BindView(R.id.loading)
     /* default */ ProgressBar loadingProgressBar;
 
+    @SuppressWarnings("WeakerAccess")
+    @BindView(R.id.iv_nodata)
+    ImageView noData;
     // endregion
 
     // region Private Fields
@@ -157,7 +168,9 @@ public class MovieListView extends FrameLayout {
          * @param itemList Observable item list.
          */
         /* default */ MoviesAdapter(@NonNull final ObservableList<MovieViewModel> itemList) {
+
             super(itemList, BR.movie, R.layout.item_poster);
+            Log.d("itemList",String.valueOf(itemList.size()));
             setHasStableIds(true);
         }
 
@@ -173,6 +186,7 @@ public class MovieListView extends FrameLayout {
 
     /**
      * Constructor.
+     *
      * @param context Context.
      */
     public MovieListView(final Context context) {
@@ -182,8 +196,9 @@ public class MovieListView extends FrameLayout {
 
     /**
      * Constructor.
+     *
      * @param context Context.
-     * @param attrs Attributes.
+     * @param attrs   Attributes.
      */
     public MovieListView(final Context context, final AttributeSet attrs) {
         super(context, attrs);
@@ -192,8 +207,9 @@ public class MovieListView extends FrameLayout {
 
     /**
      * Constructor.
-     * @param context Context.
-     * @param attrs Attributes.
+     *
+     * @param context      Context.
+     * @param attrs        Attributes.
      * @param defStyleAttr Style attribute.
      */
     public MovieListView(final Context context, final AttributeSet attrs, final int defStyleAttr) {
@@ -207,18 +223,23 @@ public class MovieListView extends FrameLayout {
 
     /**
      * Set movie list.
+     *
      * @param movieList Movie list. Set to null to clear the bindings and references.
      */
     public void setMovieList(@Nullable final IMovieList movieList) {
         this.movieList = movieList;
 
-        if (movieList == null) {
+        if (movieList== null) {
+            noData.setVisibility(VISIBLE);
             swipeRefreshLayout.setOnRefreshListener(null);
             movieGridView.setAdapter(null);
         } else {
+            noData.setVisibility(GONE);
             final MoviesAdapter adapter = new MoviesAdapter(movieList.getMovies());
+            DividerItemDecoration itemDecorator = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
+            itemDecorator.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.divider));
+            movieGridView.addItemDecoration(itemDecorator);
             movieGridView.setAdapter(adapter);
-
             swipeRefreshLayout.setDirection(
                     movieList.hasNexPage() ? SwipyRefreshLayoutDirection.BOTH
                             : SwipyRefreshLayoutDirection.TOP);
@@ -227,6 +248,7 @@ public class MovieListView extends FrameLayout {
                 startLoadingAnimation();
                 movieList.load().subscribe(loadingObserver);
             }
+
         }
     }
 
