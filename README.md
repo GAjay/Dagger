@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Android App Architecture Demo - MVVM with databinding (Java version) [[Kotlin version](https://github.com/BrianSpace/Android-App-Architecture-MVVM-Databinding/tree/kotlin)] [[中文版](README_zh.md)]
 This is a sample project to demonstrate the Android application architecture with MVVM pattern, a simple client for [The Movie DB](https://www.themoviedb.org/) web API.
 
@@ -184,3 +185,6 @@ License
   See the License for the specific language governing permissions and
   limitations under the License.
 
+=======
+# Dagger
+>>>>>>> 615ff37591a8b4483cd7a65fb3a02500d13bc770
