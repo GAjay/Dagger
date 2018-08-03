@@ -148,6 +148,11 @@ public class MovieListView extends FrameLayout {
 
         @Override
         public void onComplete() {
+            if (movieList.getMovies().size() > 0) {
+                noData.setVisibility(GONE);
+            } else {
+                noData.setVisibility(VISIBLE);
+            }
             swipeRefreshLayout.setRefreshing(false);
             swipeRefreshLayout.setDirection(movieList != null && movieList.hasNexPage()
                     ? SwipyRefreshLayoutDirection.BOTH : SwipyRefreshLayoutDirection.TOP);
@@ -170,7 +175,6 @@ public class MovieListView extends FrameLayout {
         /* default */ MoviesAdapter(@NonNull final ObservableList<MovieViewModel> itemList) {
 
             super(itemList, BR.movie, R.layout.item_poster);
-            Log.d("itemList",String.valueOf(itemList.size()));
             setHasStableIds(true);
         }
 
@@ -178,6 +182,7 @@ public class MovieListView extends FrameLayout {
         public long getItemId(final int position) {
             return adapterItems.get(position).getId();
         }
+
     }
 
     // endregion
@@ -229,12 +234,10 @@ public class MovieListView extends FrameLayout {
     public void setMovieList(@Nullable final IMovieList movieList) {
         this.movieList = movieList;
 
-        if (movieList== null) {
-            noData.setVisibility(VISIBLE);
+        if (movieList == null) {
             swipeRefreshLayout.setOnRefreshListener(null);
             movieGridView.setAdapter(null);
         } else {
-            noData.setVisibility(GONE);
             final MoviesAdapter adapter = new MoviesAdapter(movieList.getMovies());
             DividerItemDecoration itemDecorator = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
             itemDecorator.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.divider));
@@ -245,8 +248,14 @@ public class MovieListView extends FrameLayout {
                             : SwipyRefreshLayoutDirection.TOP);
 
             if (!movieList.isLoaded()) {
+                noData.setVisibility(VISIBLE);
                 startLoadingAnimation();
                 movieList.load().subscribe(loadingObserver);
+
+            }
+            else{
+                System.out.println("movielistcode"+movieList.getMovies().size()+"");
+                noData.setVisibility(GONE);
             }
 
         }
@@ -264,7 +273,6 @@ public class MovieListView extends FrameLayout {
 
     private void initWidgets() {
         ButterKnife.bind(this);
-
         swipeRefreshLayout.setDirection(SwipyRefreshLayoutDirection.TOP);
 
         swipeRefreshLayout.setOnRefreshListener(direction -> {
@@ -276,6 +284,8 @@ public class MovieListView extends FrameLayout {
                 movieList.loadNextPage().subscribe(loadingObserver);
             }
         });
+
+        // Log.d("size", movieList.getMovies().size() + "");
     }
 
     private void startLoadingAnimation() {

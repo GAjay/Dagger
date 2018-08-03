@@ -9,6 +9,11 @@
         <variable
             name="movieListForBinding"
             type="com.github.brianspace.moviebrowser.viewmodels.IMovieList" />
+
+
+        <variable
+            name="movie"
+            type="com.github.brianspace.moviebrowser.viewmodels.MovieViewModel" />
     </data>
 
     <FrameLayout
@@ -39,11 +44,11 @@
             android:id="@+id/iv_nodata"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:contentDescription="@string/app_name"
             android:gravity="center_horizontal"
             android:src="@drawable/ic_popcorn"
-            android:visibility="visible"
-            android:layout_gravity="center_vertical|center_horizontal"
-            />
+            android:visibility="visible" />
 
 
         <ProgressBar

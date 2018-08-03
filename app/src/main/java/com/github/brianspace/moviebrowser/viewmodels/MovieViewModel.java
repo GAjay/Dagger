@@ -18,12 +18,15 @@ package com.github.brianspace.moviebrowser.viewmodels;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+import android.databinding.BindingAdapter;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
+
 import com.github.brianspace.common.observable.IObserver;
 import com.github.brianspace.common.util.Assertion;
 import com.github.brianspace.databinding.message.IMessageSource;
@@ -33,6 +36,9 @@ import com.github.brianspace.moviebrowser.models.IFavoriteMovieCollection;
 import com.github.brianspace.moviebrowser.models.IImageConfig;
 import com.github.brianspace.moviebrowser.models.Movie;
 import com.github.brianspace.moviebrowser.ui.nav.NavigationHelper;
+
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 
 /**
  * View model for movie item.
@@ -83,21 +89,18 @@ public class MovieViewModel extends BaseObservable {
     /**
      * Constructor for view model layer internal usage.
      *
-     * @param movie model layer movie object.
-     * @param imageConfig interface for image configuration.
+     * @param movie                   model layer movie object.
+     * @param imageConfig             interface for image configuration.
      * @param favoriteMovieCollection model layer collection of favorite movies.
      */
     /* default */ MovieViewModel(@NonNull final Movie movie, @NonNull final IImageConfig imageConfig,
-            @NonNull final IFavoriteMovieCollection favoriteMovieCollection) {
+                                 @NonNull final IFavoriteMovieCollection favoriteMovieCollection) {
         this.movie = Assertion.notNull(movie);
         this.imageConfig = Assertion.notNull(imageConfig);
         this.favoriteMovieCollection = Assertion.notNull(favoriteMovieCollection);
-
         movie.addObserver(itemObserver);
     }
-
     // endregion
-
     // region Public Methods
 
     /**
@@ -148,7 +151,6 @@ public class MovieViewModel extends BaseObservable {
     public boolean isFavorite() {
         return movie.isFavorite();
     }
-
     /**
      * Get notification message.
      */
@@ -156,16 +158,13 @@ public class MovieViewModel extends BaseObservable {
     public IMessageSource getMessage() {
         return message;
     }
-
     /**
      * Click handler for the movie item.
      */
     public void onClickItem(final View view) {
         NavigationHelper.navigateToMovieDetails(view.getContext(), movie.getId());
     }
-
     // endregion
-
     // region Package Private Methods
 
     /**
@@ -177,6 +176,5 @@ public class MovieViewModel extends BaseObservable {
     /* default */ boolean hasId(final int id) {
         return movie.getId() == id;
     }
-
     // endregion
 }
